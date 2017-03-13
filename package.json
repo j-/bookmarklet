@@ -1,0 +1,19 @@
+{
+  "name": "bookmarklet",
+  "version": "0.0.0",
+  "description": "Create JS bookmarklets",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/j-/bookmarklet.git"
+  },
+  "author": "Jamie Hoeks <j@skeoh.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/j-/bookmarklet/issues"
+  },
+  "homepage": "https://github.com/j-/bookmarklet#readme"
+}
