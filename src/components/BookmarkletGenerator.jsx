@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CodeMirror from 'react-codemirror';
 import Bookmarklet from './Bookmarklet';
+import { js_beautify as beautify } from 'js-beautify';
 
 import 'codemirror/mode/javascript/javascript';
 
@@ -17,8 +18,35 @@ export default class BookmarkletGenerator extends Component {
 			mode: 'javascript',
 			lineNumbers: true,
 		};
+		this.handleDragover = this.handleDragover.bind(this);
+		this.handleDrop = this.handleDrop.bind(this);
 		this.updateSource = this.updateSource.bind(this);
 		this.updateTitle = this.updateTitle.bind(this);
+	}
+
+	componentDidMount () {
+		window.addEventListener('dragover', this.handleDragover);
+		window.addEventListener('drop', this.handleDrop);
+	}
+
+	componentWillUnmount () {
+		window.removeEventListener('dragover', this.handleDragover);
+		window.removeEventListener('drop', this.handleDrop);
+	}
+
+	handleDragover (e) {
+		e.preventDefault();
+	}
+
+	handleDrop (e) {
+		e.preventDefault();
+		[...e.dataTransfer.items].forEach((item) => {
+			item.getAsString((str) => {
+				if (str.substring(0, 11) === 'javascript:') {
+					this.importBookmarklet(str);
+				}
+			});
+		});
 	}
 
 	persistState (state) {
@@ -50,6 +78,20 @@ export default class BookmarkletGenerator extends Component {
 		this.setState({
 			title,
 		}, () => this.persistState(this.state));
+	}
+
+	importBookmarklet (string) {
+		const match = string.match(/^javascript:void\(\(\) ?=> ?{(.*?)}\)\(\);?$/);
+		if (!match) {
+			// Could not detect source
+			// Exit early
+			return;
+		}
+		const contents = match[1];
+		const source = beautify(contents, {
+			indent_size: 2,
+		});
+		this.updateSource(source);
 	}
 
 	render () {
