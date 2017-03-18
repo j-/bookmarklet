@@ -98,32 +98,31 @@ export default class BookmarkletGenerator extends Component {
 		const { source, title } = this.state;
 		return (
 			<div className="bookmarklet-generator">
+				<div className="bookmarklet-header">
+					<div className="title-container">
+						<label htmlFor="bookmarklet-title">
+							Choose a title for your bookmarklet
+						</label><br />
+						<input
+							type="text"
+							id="bookmarklet-title"
+							className="bookmarklet-title"
+							placeholder="Bookmarklet title"
+							value={ title }
+							onChange={ this.updateTitle }
+						/>
+					</div>
+					<div className="bookmarklet-container">
+						<p>Drag this link to your bookmarks</p>
+						<Bookmarklet source={ source }>{ title }</Bookmarklet>
+					</div>
+				</div>
 				<div className="source-container">
 					<CodeMirror
 						value={ source }
 						onChange={ this.updateSource }
 						options={ this.editorOptions }
 					/>
-				</div>
-				<div className="title-container">
-					<label
-						className="bookmarklet-title-label"
-						htmlFor="bookmarklet-title"
-					>
-						Title
-					</label><br />
-					<input
-						type="text"
-						id="bookmarklet-title"
-						className="bookmarklet-title"
-						placeholder="Bookmarklet title"
-						value={ title }
-						onChange={ this.updateTitle }
-					/>
-				</div>
-				<div className="bookmarklet-container">
-					<Bookmarklet source={ source }>{ title }</Bookmarklet>
-					<p>Drag this link to your bookmarks.</p>
 				</div>
 			</div>
 		);
