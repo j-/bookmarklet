@@ -3,7 +3,9 @@ import BookmarkletGenerator from './BookmarkletGenerator';
 
 const App = () => (
 	<div>
-		<h1>Bookmarklet</h1>
+		<h1>
+			<a href="https://en.wikipedia.org/wiki/Bookmarklet" title="'Bookmarklet' on Wikipedia">Bookmarklet</a>
+		</h1>
 		<BookmarkletGenerator />
 	</div>
 );
