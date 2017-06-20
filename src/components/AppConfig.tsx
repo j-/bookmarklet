@@ -2,16 +2,21 @@ import * as React from 'react';
 import FlexContainer from './FlexContainer';
 import FlexItem from './FlexItem';
 import Bookmarklet from './Bookmarklet';
+import Help from './Help';
 import './AppConfig.css';
 
 const AppConfig = () => (
 	<FlexContainer row={true} style={{ height: '100%' }}>
 		<FlexItem flexGrow={1}>
-			<div className="pt-form-group AppConfig-item">
+			<span className="pt-form-group AppConfig-item">
 				<label className="pt-label" htmlFor="bookmarklet-title">
 					Step 1: Choose a title for your bookmarklet
+					<Help title="Bookmarklet title">
+						This is the text that will show in your browser bookmarks.
+						Leave this field blank to have an icon only.
+					</Help>
 				</label>
-				<div className="pt-form-content">
+				<span className="pt-form-content">
 					<input
 						id="bookmarklet-title"
 						className="pt-input pt-fill"
@@ -19,21 +24,25 @@ const AppConfig = () => (
 						placeholder="Leave blank for no title"
 						style={{ width: '100%' }}
 					/>
-				</div>
-			</div>
+				</span>
+			</span>
 		</FlexItem>
 		<FlexItem flexGrow={1}>
-			<div className="pt-form-group AppConfig-item">
-				<label className="pt-label">
+			<span className="pt-form-group AppConfig-item">
+				<span className="pt-label">
 					Step 3: Drag this link to your bookmarks
-				</label>
-				<div className="pt-form-content">
+					<Help title="Drag to bookmarks">
+						Click and drag this link to your bookmarks toolbar or menu.
+						You can then click it any time to execute your bookmarklet.
+					</Help>
+				</span>
+				<span className="pt-form-content">
 					<Bookmarklet
 						source="alert('Hello world')"
 						title=""
 					/>
-				</div>
-			</div>
+				</span>
+			</span>
 		</FlexItem>
 	</FlexContainer>
 );

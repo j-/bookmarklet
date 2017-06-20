@@ -5,6 +5,11 @@
 	position: absolute;
 }
 
+.AppEditor .pt-label {
+	margin-bottom: 5px;
+	cursor: default;
+}
+
 .AppEditor .pt-card {
 	padding: 0;
 	overflow: hidden;

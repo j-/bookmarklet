@@ -1,3 +1,8 @@
 .AppConfig-item {
 	padding: 1em;
 }
+
+.AppConfig-item .pt-label {
+	margin-bottom: 5px;
+	cursor: default;
+}
