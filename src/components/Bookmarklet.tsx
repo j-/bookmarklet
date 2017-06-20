@@ -7,7 +7,7 @@ export interface Props {
 }
 
 const buildHref = (source: string) => (
-	`javascript:void(()=>{${source}})()`
+	`javascript:${source}`
 );
 
 const Untitled = () => (

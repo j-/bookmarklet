@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Observable, Subscription } from 'rxjs';
+import { js_beautify as beautify } from 'js-beautify';
 
 const { fromEvent, merge } = Observable;
 
@@ -9,7 +10,7 @@ export interface Props {
 
 export default class DataInputTarget extends React.Component<Props, void> {
 	private dndSubscription: Subscription;
-	private dtSubscription: Subscription;
+	private dataSubscription: Subscription;
 
 	componentWillMount () {
 		const { onData } = this.props;
@@ -25,16 +26,18 @@ export default class DataInputTarget extends React.Component<Props, void> {
 		const pasteData = pasteEvents.pluck<ClipboardEvent, DataTransfer>('clipboardData');
 		const dataTransfers = merge(dropData, pasteData);
 		const plainText = dataTransfers.map((dt) => dt.getData('text/plain'));
+		const noJavaScript = plainText.map((text) => text.replace(/^javascript:/, ''));
+		const beautified = noJavaScript.map((ugly) => beautify(ugly));
 
 		this.dndSubscription = dragAndDropEvents
 			.subscribe((e) => e.preventDefault());
-		this.dtSubscription = plainText
+		this.dataSubscription = beautified
 			.subscribe((text) => onData(text));
 	}
 
 	componentWillUnmount () {
 		this.dndSubscription.unsubscribe();
-		this.dtSubscription.unsubscribe();
+		this.dataSubscription.unsubscribe();
 	}
 
 	render () {
