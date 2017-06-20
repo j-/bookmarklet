@@ -1,6 +1,7 @@
 import * as React from 'react';
 import FlexContainer from './FlexContainer';
 import FlexItem from './FlexItem';
+import BookmarkletTitle from '../containers/BookmarkletTitle';
 import Bookmarklet from '../containers/Bookmarklet';
 import Help from './Help';
 import './AppConfig.css';
@@ -17,13 +18,7 @@ const AppConfig = () => (
 					</Help>
 				</label>
 				<span className="pt-form-content">
-					<input
-						id="bookmarklet-title"
-						className="pt-input pt-fill"
-						type="text"
-						placeholder="Leave blank for no title"
-						style={{ width: '100%' }}
-					/>
+					<BookmarkletTitle />
 				</span>
 			</span>
 		</FlexItem>
