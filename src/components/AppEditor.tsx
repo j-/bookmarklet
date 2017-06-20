@@ -14,7 +14,7 @@ const AppEditor = () => (
 	<div className="AppEditor">
 		<div className="pt-form-group AppEditor-fill-height">
 			<span className="pt-label">
-				Step 2: Set the source of the bookmarklet
+				<strong>Step 2</strong>: Set the source of the bookmarklet
 				<Help title="Bookmarklet source">
 					Contains the JavaScript code to be executed when this bookmarklet is clicked.
 				</Help>
