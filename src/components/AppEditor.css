@@ -36,3 +36,11 @@
 	/* Override style set by Blueprint */
 	box-shadow: none !important;
 }
+
+.AppEditor .CodeMirror {
+	cursor: text;
+}
+
+.AppEditor .CodeMirror-gutters {
+	cursor: default;
+}
