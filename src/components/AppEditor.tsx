@@ -1,14 +1,7 @@
 import * as React from 'react';
-import * as CodeMirror from 'react-codemirror';
 import Help from './Help';
-import 'codemirror/mode/javascript/javascript';
+import BookmarkletSource from '../containers/BookmarkletSource';
 import './AppEditor.css';
-
-const editorOptions = {
-	mode: 'javascript',
-	lineNumbers: true,
-	name: 'bookmarklet-source',
-};
 
 const AppEditor = () => (
 	<div className="AppEditor">
@@ -21,9 +14,7 @@ const AppEditor = () => (
 			</span>
 			<div className="pt-form-content AppEditor-fill-height">
 				<div className="pt-card AppEditor-fill-height">
-					<CodeMirror
-						options={editorOptions}
-					/>
+					<BookmarkletSource />
 				</div>
 			</div>
 		</div>
