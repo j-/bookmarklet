@@ -1,7 +1,7 @@
 import * as React from 'react';
 import FlexContainer from './FlexContainer';
 import FlexItem from './FlexItem';
-import Bookmarklet from './Bookmarklet';
+import Bookmarklet from '../containers/Bookmarklet';
 import Help from './Help';
 import './AppConfig.css';
 
@@ -37,10 +37,7 @@ const AppConfig = () => (
 					</Help>
 				</span>
 				<span className="pt-form-content">
-					<Bookmarklet
-						source="alert('Hello world')"
-						title=""
-					/>
+					<Bookmarklet />
 				</span>
 			</span>
 		</FlexItem>

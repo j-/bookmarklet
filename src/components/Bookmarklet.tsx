@@ -3,7 +3,7 @@ import './Bookmarklet.css';
 
 export interface Props {
 	source: string;
-	title?: string;
+	title: string;
 }
 
 const buildHref = (source: string) => (

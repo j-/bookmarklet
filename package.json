@@ -11,13 +11,16 @@
     "@types/react": "^15.0.29",
     "@types/react-codemirror": "^0.2.6",
     "@types/react-dom": "^15.5.0",
+    "@types/react-redux": "^4.4.44",
     "codemirror": "^5.26.0",
     "gh-pages": "^1.0.0",
     "react": "^15.6.1",
     "react-addons-css-transition-group": "^15.6.0",
     "react-codemirror": "^1.0.0",
     "react-dom": "^15.6.1",
-    "react-scripts-ts": "2.2.0"
+    "react-redux": "^5.0.5",
+    "react-scripts-ts": "2.2.0",
+    "redux-devtools-extension": "^2.13.2"
   },
   "scripts": {
     "start": "react-scripts-ts start",
