@@ -1,13 +1,28 @@
 import * as React from 'react';
 import './Bookmarklet.css';
 
+const uglify = require('uglifyjs-browser');
+
 export interface Props {
 	source: string;
 	title: string;
 }
 
+const minify = (src: string): string => {
+	let ast = uglify.parse(src);
+	ast.figure_out_scope();
+	const compressor = uglify.Compressor();
+	ast = ast.transform(compressor);
+
+	ast.figure_out_scope();
+	ast.compute_char_frequency();
+	ast.mangle_names();
+
+	return ast.print_to_string();
+};
+
 const buildHref = (source: string) => (
-	`javascript:${source}`
+	`javascript:${minify(source)}`
 );
 
 const Untitled = () => (
