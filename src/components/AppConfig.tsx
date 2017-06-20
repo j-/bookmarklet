@@ -5,7 +5,7 @@ import Bookmarklet from './Bookmarklet';
 import './AppConfig.css';
 
 const AppConfig = () => (
-	<FlexContainer row={true}>
+	<FlexContainer row={true} style={{ height: '100%' }}>
 		<FlexItem flexGrow={1}>
 			<div className="pt-form-group AppConfig-item">
 				<label className="pt-label" htmlFor="bookmarklet-title">

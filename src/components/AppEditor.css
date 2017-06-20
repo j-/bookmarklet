@@ -1,0 +1,22 @@
+.AppEditor {
+	padding: 1em;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+}
+
+.AppEditor .pt-card {
+	padding: 0;
+	overflow: hidden;
+}
+
+.AppEditor .CodeMirror,
+.AppEditor .ReactCodeMirror,
+.AppEditor .AppEditor-fill-height {
+	height: 100%;
+}
+
+.AppEditor pre {
+	/* Override style set by Blueprint */
+	box-shadow: none !important;
+}

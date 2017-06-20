@@ -11,7 +11,7 @@ const App = () => (
 			<FlexItem>
 				<AppHeader />
 			</FlexItem>
-			<FlexItem flexGrow={1}>
+			<FlexItem flexGrow={1} style={{ position: 'relative' }}>
 				<AppBody />
 			</FlexItem>
 		</FlexContainer>
