@@ -8,3 +8,7 @@ body,
 	font-family: sans-serif;
 	box-sizing: border-box;
 }
+
+body {
+	min-height: 20em;
+}
