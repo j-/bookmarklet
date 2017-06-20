@@ -11,9 +11,7 @@ const buildHref = (source: string) => (
 );
 
 const Untitled = () => (
-	<em className="pt-text-muted">
-		Untitled Bookmarklet
-	</em>
+	<em className="pt-text-muted Bookmarklet-untitled" />
 );
 
 export default class Bookmarklet extends React.Component<Props, void> {
