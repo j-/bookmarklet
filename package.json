@@ -1,6 +1,6 @@
 {
   "name": "bookmarklet",
-  "version": "0.1.0",
+  "version": "2.0.0",
   "private": true,
   "dependencies": {},
   "devDependencies": {
@@ -12,6 +12,7 @@
     "@types/react-codemirror": "^0.2.6",
     "@types/react-dom": "^15.5.0",
     "codemirror": "^5.26.0",
+    "gh-pages": "^1.0.0",
     "react": "^15.6.1",
     "react-addons-css-transition-group": "^15.6.0",
     "react-codemirror": "^1.0.0",
@@ -22,6 +23,20 @@
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject"
-  }
+    "eject": "react-scripts-ts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "description": "Create JS bookmarklets",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/j-/bookmarklet.git"
+  },
+  "author": "Jamie Hoeks <j@skeoh.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/j-/bookmarklet/issues"
+  },
+  "homepage": "https://skeoh.com/bookmarklet/"
 }
