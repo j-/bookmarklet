@@ -1,6 +1,7 @@
 import * as React from 'react';
 import FlexContainer from './FlexContainer';
 import FlexItem from './FlexItem';
+import Bookmarklet from './Bookmarklet';
 import './AppConfig.css';
 
 const AppConfig = () => (
@@ -27,14 +28,10 @@ const AppConfig = () => (
 					Step 3: Drag this link to your bookmarks
 				</label>
 				<div className="pt-form-content">
-					<a
-						className="pt-button pt-fill"
-						href="javascript:alert('Hello world');"
-						style={{ textAlign: 'left' }}
-					>
-						<span className="pt-icon-standard pt-icon-document" />
-						Bookmarklet
-					</a>
+					<Bookmarklet
+						source="alert('Hello world')"
+						title=""
+					/>
 				</div>
 			</div>
 		</FlexItem>
