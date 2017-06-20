@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 const AppHeader = () => (
-	<nav className="pt-navbar">
+	<nav className="pt-navbar pt-dark">
 		<div className="pt-navbar-group pt-align-left">
 			<div className="pt-navbar-heading">Bookmarklet</div>
 		</div>
