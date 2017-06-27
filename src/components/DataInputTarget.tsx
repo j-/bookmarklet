@@ -8,30 +8,32 @@ export interface Props {
 	onData: (data: string) => void;
 }
 
+// Event streams
+const pasteEvents = fromEvent<ClipboardEvent>(window, 'paste');
+const dragEvents = fromEvent<DragEvent>(window, 'dragover');
+const dropEvents = fromEvent<DragEvent>(window, 'drop');
+const dragAndDropEvents = merge(dragEvents, dropEvents);
+
+// Get transfer data from drag+drop events
+const dropData = dropEvents.pluck<DragEvent, DataTransfer>('dataTransfer')
+	// Ignore drag+drop events originating from within the app
+	.filter((dt) => dt.getData('application/vnd.skeoh.bookmarklet') === '');
+
+// Get transfer data from copy+paste events
+const pasteData = pasteEvents.pluck<ClipboardEvent, DataTransfer>('clipboardData');
+
+// Get JS source from data copy+pasted or drag+dropped into the app
+const sourceData = merge(dropData, pasteData)
+	.map((dt) => dt.getData('text/plain'))
+	.map((text) => text.replace(/^javascript:/, ''))
+	.map((ugly) => beautify(ugly));
+
 export default class DataInputTarget extends React.Component<Props, void> {
 	private dndSubscription: Subscription;
 	private dataSubscription: Subscription;
 
 	componentWillMount () {
 		const { onData } = this.props;
-
-		// Event streams
-		const pasteEvents = fromEvent<ClipboardEvent>(window, 'paste');
-		const dragEvents = fromEvent<DragEvent>(window, 'dragover');
-		const dropEvents = fromEvent<DragEvent>(window, 'drop');
-		const dragAndDropEvents = merge(dragEvents, dropEvents);
-
-		// Get transfer data from events
-		const dropData = dropEvents.pluck<DragEvent, DataTransfer>('dataTransfer')
-			// Ignore drop events from within the app
-			.filter((dt) => dt.getData('application/vnd.skeoh.bookmarklet') === '');
-		const pasteData = pasteEvents.pluck<ClipboardEvent, DataTransfer>('clipboardData');
-		// JS source copy+pasted or drag+dropped into the app
-		const sourceData = merge(dropData, pasteData)
-			.map((dt) => dt.getData('text/plain'))
-			.map((text) => text.replace(/^javascript:/, ''))
-			.map((ugly) => beautify(ugly));
-
 		this.dndSubscription = dragAndDropEvents
 			.subscribe((e) => e.preventDefault());
 		this.dataSubscription = sourceData
