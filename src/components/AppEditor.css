@@ -41,6 +41,11 @@
 	cursor: text;
 }
 
+.AppEditor .CodeMirror-vscrollbar,
+.AppEditor .CodeMirror-hscrollbar {
+	cursor: default;
+}
+
 .AppEditor .CodeMirror-gutters {
 	cursor: default;
 }
