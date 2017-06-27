@@ -22,16 +22,19 @@ export default class DataInputTarget extends React.Component<Props, void> {
 		const dragAndDropEvents = merge(dragEvents, dropEvents);
 
 		// Get transfer data from events
-		const dropData = dropEvents.pluck<DragEvent, DataTransfer>('dataTransfer');
+		const dropData = dropEvents.pluck<DragEvent, DataTransfer>('dataTransfer')
+			// Ignore drop events from within the app
+			.filter((dt) => dt.getData('application/vnd.skeoh.bookmarklet') === '');
 		const pasteData = pasteEvents.pluck<ClipboardEvent, DataTransfer>('clipboardData');
-		const dataTransfers = merge(dropData, pasteData);
-		const plainText = dataTransfers.map((dt) => dt.getData('text/plain'));
-		const noJavaScript = plainText.map((text) => text.replace(/^javascript:/, ''));
-		const beautified = noJavaScript.map((ugly) => beautify(ugly));
+		// JS source copy+pasted or drag+dropped into the app
+		const sourceData = merge(dropData, pasteData)
+			.map((dt) => dt.getData('text/plain'))
+			.map((text) => text.replace(/^javascript:/, ''))
+			.map((ugly) => beautify(ugly));
 
 		this.dndSubscription = dragAndDropEvents
 			.subscribe((e) => e.preventDefault());
-		this.dataSubscription = beautified
+		this.dataSubscription = sourceData
 			.subscribe((text) => onData(text));
 	}
 

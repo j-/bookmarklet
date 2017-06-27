@@ -61,6 +61,7 @@ export default class Bookmarklet extends React.Component<Props, State> {
 				href={href}
 				onMouseOver={this.handleMouseDown}
 				onClick={this.handleClick}
+				onDragStart={this.handleDragStart}
 			>
 				<span className="pt-icon-standard pt-icon-document" />
 				{title || <Untitled />}
@@ -83,5 +84,9 @@ export default class Bookmarklet extends React.Component<Props, State> {
 	private handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
 		e.preventDefault();
 		alert('This link must be dragged to your bookmarks');
+	}
+
+	private handleDragStart = (e: React.DragEvent<HTMLAnchorElement>) => {
+		e.dataTransfer.setData('application/vnd.skeoh.bookmarklet', this.state.href);
 	}
 }
