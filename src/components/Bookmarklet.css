@@ -1,3 +1,9 @@
+.Bookmarklet {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
 .Bookmarklet.pt-button {
 	text-align: left;
 	cursor: grab;

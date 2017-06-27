@@ -8,7 +8,7 @@ import './AppConfig.css';
 
 const AppConfig = () => (
 	<FlexContainer row={true} style={{ height: '100%' }}>
-		<FlexItem flexGrow={1}>
+		<FlexItem flexGrow={1} style={{ width: '50%' }}>
 			<span className="pt-form-group AppConfig-item">
 				<label className="pt-label" htmlFor="bookmarklet-title">
 					<strong>Step 1</strong>: Choose a title for your bookmarklet
@@ -22,7 +22,7 @@ const AppConfig = () => (
 				</span>
 			</span>
 		</FlexItem>
-		<FlexItem flexGrow={1}>
+		<FlexItem flexGrow={1} style={{ width: '50%' }}>
 			<span className="pt-form-group AppConfig-item">
 				<span className="pt-label">
 					<strong>Step 3</strong>: Drag this link to your bookmarks
