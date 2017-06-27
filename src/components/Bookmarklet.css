@@ -3,6 +3,10 @@
 	cursor: grab;
 }
 
+.Bookmarklet.pt-button:active {
+	cursor: grabbing;
+}
+
 .Bookmarklet-untitled::after {
 	content: 'Untitled Bookmarklet';
 }
