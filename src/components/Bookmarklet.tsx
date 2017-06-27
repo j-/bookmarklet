@@ -59,7 +59,7 @@ export default class Bookmarklet extends React.Component<Props, State> {
 			<a
 				className="pt-button pt-fill Bookmarklet"
 				href={href}
-				onMouseOver={this.handleMouseOver}
+				onMouseOver={this.handleMouseDown}
 				onClick={this.handleClick}
 			>
 				<span className="pt-icon-standard pt-icon-document" />
@@ -68,7 +68,7 @@ export default class Bookmarklet extends React.Component<Props, State> {
 		);
 	}
 
-	private handleMouseOver = (e: React.MouseEvent<HTMLAnchorElement>) => {
+	private handleMouseDown = (e: React.MouseEvent<HTMLAnchorElement>) => {
 		if (this.state.href) {
 			// Already generated href
 			// Exit early
