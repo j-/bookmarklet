@@ -19,11 +19,19 @@ const editorOptions = {
 };
 
 export default class BookmarkletSource extends React.Component<Props, void> {
+	private container: HTMLDivElement;
 	private rcm: Partial<ReactCodeMirror>;
 
 	componentWillReceiveProps (props: Props) {
 		const { rcm } = this;
 		if (typeof rcm.getCodeMirror !== 'function') {
+			// Cannot get code mirror instance
+			// Exit early
+			return;
+		}
+		if (this.container.contains(document.activeElement)) {
+			// Editor is already in focus
+			// Exit early
 			return;
 		}
 		const cm = rcm.getCodeMirror();
@@ -34,14 +42,18 @@ export default class BookmarkletSource extends React.Component<Props, void> {
 		const { value, onChange } = this.props;
 
 		return (
-			<CodeMirror
-				ref={this.setRef}
-				options={editorOptions}
-				value={value}
-				onChange={onChange}
-			/>
+			<div ref={this.setContainer} style={{ height: '100%' }}>
+				<CodeMirror
+					ref={this.setEditor}
+					options={editorOptions}
+					value={value}
+					onChange={onChange}
+				/>
+			</div>
 		);
 	}
 
-	private setRef = (rcm: Partial<ReactCodeMirror>) => this.rcm = rcm;
+	private setEditor = (rcm: Partial<ReactCodeMirror>) => this.rcm = rcm;
+
+	private setContainer = (div: HTMLDivElement) => this.container = div;
 }
