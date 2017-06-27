@@ -19,7 +19,9 @@ export default class ShareBookmarkletButton extends React.Component<{}, State> {
 					className="pt-button pt-minimal pt-icon-help"
 					onClick={this.handleOpen}
 				>
-					About
+					<span className="button-text">
+						About
+					</span>
 				</button>
 				<Dialog
 					iconName="pt-icon-info-sign"

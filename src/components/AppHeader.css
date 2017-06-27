@@ -1,0 +1,9 @@
+@media (max-width: 800px) {
+	.AppHeader .pt-button[class*="pt-icon-"]::before {
+		margin-right: 0;
+	}
+
+	.AppHeader .button-text {
+		display: none;
+	}
+}

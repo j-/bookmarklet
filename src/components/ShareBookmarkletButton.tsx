@@ -38,7 +38,9 @@ export default class ShareBookmarkletButton extends React.Component<Props, State
 					className="pt-button pt-minimal pt-icon-share"
 					onClick={this.handleOpen}
 				>
-					Share this Bookmarklet
+					<span className="button-text">
+						Share this Bookmarklet
+					</span>
 				</button>
 				<Dialog
 					iconName="pt-icon-share"

@@ -1,13 +1,16 @@
 import * as React from 'react';
 import ShareBookmarkletButton from '../containers/ShareBookmarkletButton';
 import AboutButton from './AboutButton';
+import './AppHeader.css';
 
 const WikipediaLink = () => (
 	<a
 		className="pt-button pt-minimal pt-icon-globe"
 		href="https://en.wikipedia.org/wiki/Bookmarklet"
 	>
-		&lsquo;Bookmarklet&rsquo; on Wikipedia
+		<span className="button-text">
+			&lsquo;Bookmarklet&rsquo; on Wikipedia
+		</span>
 	</a>
 );
 
@@ -16,12 +19,14 @@ const GitHubLink = () => (
 		className="pt-button pt-minimal pt-icon-code"
 		href="https://github.com/j-/bookmarklet"
 	>
-		Fork me on GitHub
+		<span className="button-text">
+			Fork me on GitHub
+		</span>
 	</a>
 );
 
 const AppHeader = () => (
-	<nav className="pt-navbar pt-dark">
+	<nav className="pt-navbar pt-dark AppHeader">
 		<div className="pt-navbar-group pt-align-left">
 			<div className="pt-navbar-heading">Bookmarklet</div>
 		</div>
