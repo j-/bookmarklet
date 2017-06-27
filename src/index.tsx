@@ -15,6 +15,7 @@ if (location.search) {
 	store.dispatch(
 		loadQuery(location.search)
 	);
+	history.pushState(null, document.title, location.href.split('?')[0]);
 }
 
 ReactDOM.render(

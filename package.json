@@ -13,6 +13,7 @@
     "@types/react-codemirror": "^0.2.6",
     "@types/react-dom": "^15.5.0",
     "@types/react-redux": "^4.4.44",
+    "clipboard-copy": "^1.2.0",
     "codemirror": "^5.26.0",
     "gh-pages": "^1.0.0",
     "js-beautify": "^1.6.14",
