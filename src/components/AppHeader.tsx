@@ -1,5 +1,6 @@
 import * as React from 'react';
 import ShareBookmarkletButton from '../containers/ShareBookmarkletButton';
+import AboutButton from './AboutButton';
 
 const WikipediaLink = () => (
 	<a
@@ -28,6 +29,7 @@ const AppHeader = () => (
 			<ShareBookmarkletButton />
 			<WikipediaLink />
 			<GitHubLink />
+			<AboutButton />
 		</div>
 	</nav>
 );
