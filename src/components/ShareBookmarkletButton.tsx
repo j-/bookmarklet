@@ -32,7 +32,7 @@ export default class ShareBookmarkletButton extends React.Component<Props, State
 			});
 		};
 		return (
-			<span className="Help">
+			<span>
 				<button
 					type="button"
 					className="pt-button pt-minimal pt-icon-share"
