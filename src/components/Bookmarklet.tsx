@@ -8,17 +8,25 @@ export interface Props {
 	title: string;
 }
 
+interface State {
+	href: string;
+}
+
 const minify = (src: string): string => {
-	let ast = uglify.parse(src);
-	ast.figure_out_scope();
-	const compressor = uglify.Compressor();
-	ast = ast.transform(compressor);
+	try {
+		let ast = uglify.parse(src);
+		ast.figure_out_scope();
+		const compressor = uglify.Compressor();
+		ast = ast.transform(compressor);
 
-	ast.figure_out_scope();
-	ast.compute_char_frequency();
-	ast.mangle_names();
+		ast.figure_out_scope();
+		ast.compute_char_frequency();
+		ast.mangle_names();
 
-	return ast.print_to_string();
+		return ast.print_to_string();
+	} catch (err) {
+		return '';
+	}
 };
 
 const buildHref = (source: string) => (
@@ -29,20 +37,47 @@ const Untitled = () => (
 	<em className="pt-text-muted Bookmarklet-untitled" />
 );
 
-export default class Bookmarklet extends React.Component<Props, void> {
+export default class Bookmarklet extends React.Component<Props, State> {
+	state = {
+		href: '',
+	};
+
+	componentWillReceiveProps (props: Props) {
+		if (props.source !== this.props.source) {
+			// Source has changed
+			// Invalidate href
+			this.setState(() => ({
+				href: '',
+			}));
+		}
+	}
+
 	render () {
-		const { source, title } = this.props;
-		const href = buildHref(source);
+		const { title } = this.props;
+		const { href } = this.state;
 		return (
 			<a
 				className="pt-button pt-fill Bookmarklet"
 				href={href}
+				onMouseOver={this.handleMouseOver}
 				onClick={this.handleClick}
 			>
 				<span className="pt-icon-standard pt-icon-document" />
 				{title || <Untitled />}
 			</a>
 		);
+	}
+
+	private handleMouseOver = (e: React.MouseEvent<HTMLAnchorElement>) => {
+		if (this.state.href) {
+			// Already generated href
+			// Exit early
+			return;
+		}
+		const { source } = this.props;
+		this.setState(() => ({
+			href: buildHref(source),
+		}));
 	}
 
 	private handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
