@@ -9,7 +9,6 @@ export interface Props {
 }
 
 // Event streams
-const pasteEvents = fromEvent<ClipboardEvent>(window, 'paste');
 const dragEvents = fromEvent<DragEvent>(window, 'dragover');
 const dropEvents = fromEvent<DragEvent>(window, 'drop');
 const dragAndDropEvents = merge(dragEvents, dropEvents);
@@ -19,11 +18,8 @@ const dropData = dropEvents.pluck<DragEvent, DataTransfer>('dataTransfer')
 	// Ignore drag+drop events originating from within the app
 	.filter((dt) => dt.getData('application/vnd.skeoh.bookmarklet') === '');
 
-// Get transfer data from copy+paste events
-const pasteData = pasteEvents.pluck<ClipboardEvent, DataTransfer>('clipboardData');
-
 // Get JS source from data copy+pasted or drag+dropped into the app
-const sourceData = merge(dropData, pasteData)
+const sourceData = dropData
 	.map((dt) => dt.getData('text/plain'))
 	.map((text) => text.replace(/^javascript:/, ''))
 	.map((ugly) => beautify(ugly));
