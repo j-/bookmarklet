@@ -1,4 +1,5 @@
 import { Action } from 'redux';
+import { parse } from 'querystring';
 
 export interface SetTitleAction extends Action {
 	type: 'SET_TITLE';
@@ -34,4 +35,21 @@ export const setSource = (source: string): SetSourceAction => ({
 	payload: {
 		source,
 	},
+});
+
+export interface LoadQueryAction extends Action {
+	type: 'LOAD_QUERY';
+	payload: {
+		title?: string;
+		source?: string;
+	};
+}
+
+export const isLoadQueryAction = (action: Action): action is LoadQueryAction => (
+	action.type === 'LOAD_QUERY'
+);
+
+export const loadQuery = (search: string) => ({
+	type: 'LOAD_QUERY',
+	payload: parse(search.substring(1)),
 });

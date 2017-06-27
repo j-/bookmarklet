@@ -3,6 +3,7 @@ import { Action } from 'redux';
 import {
 	isSetTitleAction,
 	isSetSourceAction,
+	isLoadQueryAction,
 } from './actions';
 
 export interface ReducerState {
@@ -27,6 +28,14 @@ export default (state: ReducerState = DEFAULT_STATE, action: Action): ReducerSta
 		return {
 			...state,
 			source: action.payload.source,
+		};
+	}
+
+	if (isLoadQueryAction(action)) {
+		return {
+			...state,
+			title: action.payload.title || state.title,
+			source: action.payload.source || state.source,
 		};
 	}
 
