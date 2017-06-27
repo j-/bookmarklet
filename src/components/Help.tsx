@@ -28,6 +28,7 @@ export default class Help extends React.Component<Props, State> {
 					type="button"
 					className="pt-button pt-minimal"
 					onClick={this.handleOpen}
+					title="Help with this step"
 				>
 					<span className="pt-icon-standard pt-icon-help" />
 				</button>
